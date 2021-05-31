@@ -2,10 +2,12 @@ let displayValue = '';
 let storedValue = null;
 let selectedOperator = '';
 const display = document.getElementById('display');
+const displaySize = 15;
 display.innerHTML = displayValue;
 
 document.getElementById('container')
         .addEventListener('click', processClick);
+window.addEventListener('keydown', processClick);
 
 function add(a, b) {
     return a+b;
@@ -46,7 +48,13 @@ function operate(a, b, operand) {
 }
 
 function processClick(event) {
-    key = event.srcElement;
+    let key;
+    if (event.keyCode) {
+        key = document.querySelector(`div[data-key="${event.keyCode}"]`);
+    } else {
+        key = event.srcElement; 
+    }
+
     if (!key.classList.contains('keys')){
         return;
     }
@@ -72,7 +80,7 @@ function processClick(event) {
 
 function updateDisplay (key){
     let char = key.innerHTML;
-    if ((displayValue.length > 10)
+    if ((displayValue.length > displaySize)
         || (char === '.' && displayValue.includes('.'))
     ) {
         return;
@@ -102,6 +110,10 @@ function processFunctionKey(key){
             selectedOperator = '';
             break;
         case '√':
+            let result = Math.sqrt(Number(displayValue));
+            setDisplayString(roundToDisplaySize(result).toString());
+            selectedOperator = null; 
+            storedValue =  null;
             break;   
         case 'On/Off':
             break;
@@ -125,13 +137,32 @@ function solveOperation(){
         let result = operate(
                 storedValue, Number(displayValue), 
                 selectedOperator);
+        
                 
-        displayValue = result.toString();
+        displayValue = roundToDisplaySize(result).toString();
         setDisplayString(displayValue);
         selectedOperator = null; 
         storedValue =  null;       
     }
 }
+
+function roundToDisplaySize(n){
+    let stringN = n.toString();
+    let result = n;
+    if (n > 999999999 || n < .0000001) {
+        return n.toExponential(displaySize-4);
+    }
+    let decimalPosition = stringN.indexOf('.');
+    let length = stringN.length;
+    if(decimalPosition >= 0 && length > displaySize) {
+       result *= Math.pow(10, displaySize-decimalPosition);
+       result = Math.round(result);
+       result /= Math.pow(10, displaySize-decimalPosition);
+    }
+    return result;
+}
+
+
 
 
 

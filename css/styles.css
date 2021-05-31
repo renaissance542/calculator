@@ -1,5 +1,10 @@
 body {
-    background: linear-gradient(to right, rgb(29, 29, 29), rgb(109, 10, 10));
+    background: linear-gradient(
+        to right, 
+        rgb(29, 29, 29), 
+        rgb(109, 10, 10));
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 8vmin;
 }
 
 #container {
@@ -11,7 +16,7 @@ body {
     display: grid;
     padding: 2px 1px;
     margin: 5vh auto;
-    grid-template-rows: 1.5fr repeat(6, 1fr);
+    grid-template-rows: 1.5fr repeat(5, 1fr);
     grid-template-columns: repeat(4, 1fr);
     border-style: solid;
     border-width: 10px;
@@ -22,7 +27,6 @@ body {
   #display {
     grid-column: 1 / 5;
     grid-row: 1 / 2;
-    font-size: 8vw;
     background: honeydew;
     border-style: solid;
     border-width: 2px;
@@ -37,8 +41,8 @@ body {
 .keys {
     margin: 1px;
     display: flex;
+    font-size: 70%;
     align-items: center;
-    font-size: 4vw;
     justify-content: center;
     border-style: solid;
     border-width: 2px;
