@@ -49,7 +49,7 @@ body {
     border-color: black;
     border-radius: 8px;
     text-align: center;
-    background-color: #808080;
+    
     
 }
 
@@ -65,13 +65,13 @@ body {
 } */
 
 .function-key {
-
+    background-color: hsl(30,83%,30%);
 }
 
 .number-key {
-
+    background-color: #808080;
 }
 
 .operator-key {
-
+    background-color: hsl(30,83%,30%);
 }
