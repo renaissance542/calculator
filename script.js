@@ -2,7 +2,7 @@ let displayValue = '';
 let storedValue = null;
 let selectedOperator = '';
 const display = document.getElementById('display');
-const displaySize = 15;
+const displaySize = 12;
 display.innerHTML = displayValue;
 
 document.getElementById('container')
